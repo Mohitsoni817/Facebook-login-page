@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eee;
+        }
+
+        .form-box {
+            width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px 35px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Georgia, serif;
+            margin-bottom: 30px;
+        }
+
+        .row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .label {
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .input {
+            flex: 1;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 7px;
+            border: 1px solid #ccc;
+        }
+
+        .name input {
+            width: 45%;
+            margin-right: 5px;
+        }
+
+        .date select {
+            width: 28%;
+            margin-right: 5px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .gender label,
+        .education label {
+            margin-right: 12px;
+            font-weight: normal;
+        }
+
+        textarea {
+            height: 60px;
+            resize: none;
+        }
+
+        input[type="file"] {
+            border: none;
+        }
+
+        .submit {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .submit input {
+            padding: 8px 25px;
+            cursor: pointer;
+        }
+
+        @media(max-width: 650px) {
+
+            .form-box {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .row {
+                display: block;
+            }
+
+            .label {
+                width: auto;
+                margin-bottom: 7px;
+            }
+
+            .name input {
+                width: 45%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+    <h1>Student Registration Form</h1>
+
+    <!-- Roll No -->
+    <div class="row">
+        <div class="label">Roll no :</div>
+
+        <div class="input">
+            <input type="text">
+        </div>
+    </div>
+
+
+    <!-- Student Name -->
+    <div class="row">
+        <div class="label">Student name :</div>
+
+        <div class="input name">
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+        </div>
+    </div>
+
+
+    <!-- Father's Name -->
+    <div class="row">
+        <div class="label">Father's name :</div>
+
+        <div class="input">
+            <input type="text">
+        </div>
+    </div>
+
+
+    <!-- Date of Birth -->
+    <div class="row">
+        <div class="label">Date of birth :</div>
+
+        <div class="input date">
+
+            <select>
+                <option>Day</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+            </select>
+
+            <select>
+                <option>Month</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+            </select>
+
+            <select>
+                <option>Year</option>
+                <option>2000</option>
+                <option>2001</option>
+                <option>2002</option>
+                <option>2003</option>
+                <option>2004</option>
+                <option>2005</option>
+            </select>
+
+        </div>
+    </div>
+
+
+    <!-- Mobile -->
+    <div class="row">
+        <div class="label">Mobile no :</div>
+
+        <div class="input">
+            <input type="tel" placeholder="+91">
+        </div>
+    </div>
+
+
+    <!-- Email -->
+    <div class="row">
+        <div class="label">Email id :</div>
+
+        <div class="input">
+            <input type="email">
+        </div>
+    </div>
+
+
+    <!-- Password -->
+    <div class="row">
+        <div class="label">Password :</div>
+
+        <div class="input">
+            <input type="password">
+        </div>
+    </div>
+
+
+    <!-- Gender -->
+    <div class="row">
+        <div class="label">Gender :</div>
+
+        <div class="input gender">
+
+            <label>
+                <input type="radio" name="gender">
+                Male
+            </label>
+
+            <label>
+                <input type="radio" name="gender">
+                Female
+            </label>
+
+        </div>
+    </div>
+
+
+    <!-- Education -->
+    <div class="row">
+        <div class="label">Department :</div>
+
+        <div class="input education">
+
+            <label>
+                <input type="checkbox">
+                CSE
+            </label>
+
+            <label>
+                <input type="checkbox">
+                IT
+            </label>
+
+            <label>
+                <input type="checkbox">
+                ECE
+            </label>
+
+            <label>
+                <input type="checkbox">
+                Civil
+            </label>
+
+        </div>
+    </div>
+
+
+    <!-- Course -->
+    <div class="row">
+        <div class="label">Course :</div>
+
+        <div class="input">
+
+            <select>
+                <option>Select Current Course</option>
+                <option>B.Tech</option>
+                <option>BCA</option>
+                <option>MCA</option>
+                <option>B.Sc</option>
+            </select>
+
+        </div>
+    </div>
+
+
+    <!-- Student Photo -->
+    <div class="row">
+        <div class="label">Student photo :</div>
+
+        <div class="input">
+            <input type="file">
+        </div>
+    </div>
+
+
+    <!-- City -->
+    <div class="row">
+        <div class="label">City :</div>
+
+        <div class="input">
+            <input type="text">
+        </div>
+    </div>
+
+
+    <!-- Address -->
+    <div class="row">
+        <div class="label">Address :</div>
+
+        <div class="input">
+            <textarea></textarea>
+        </div>
+    </div>
+
+
+    <!-- Submit -->
+    <div class="submit">
+        <input type="submit" value="Submit">
+    </div>
+
+</div>
+
+</body>
+</html>

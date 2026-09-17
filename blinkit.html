@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blinkit Clone</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            padding: 0 35px;
+            gap: 28px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #f7b500;
+        }
+
+        .logo span {
+            color: #1f9d48;
+        }
+
+        .delivery {
+            width: 210px;
+            font-size: 13px;
+            line-height: 20px;
+        }
+
+        .delivery b {
+            font-size: 14px;
+        }
+
+        .search {
+            flex: 1;
+        }
+
+        .search input {
+            width: 100%;
+            height: 45px;
+            border: none;
+            background: #f2f2f2;
+            border-radius: 8px;
+            padding: 0 18px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .login-btn {
+            border: none;
+            background: white;
+            font-size: 16px;
+        }
+
+        .cart-btn {
+            border: none;
+            background: #0c831f;
+            color: white;
+            padding: 13px 20px;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 94%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* ================= BANNER ================= */
+
+        .hero {
+            margin-top: 20px;
+            height: 270px;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(90deg, #075b29, #74b63b);
+            color: white;
+            padding: 40px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            max-width: 600px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 550px;
+            line-height: 1.5;
+        }
+
+        .hero button {
+            margin-top: 22px;
+            padding: 12px 24px;
+            background: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .hero img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 430px;
+            height: 270px;
+            object-fit: cover;
+        }
+
+        /* ================= SMALL BANNERS ================= */
+
+        .small-banners {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .small-banner {
+            height: 190px;
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .small-banner h2 {
+            font-size: 21px;
+            max-width: 220px;
+        }
+
+        .small-banner p {
+            font-size: 13px;
+            margin-top: 8px;
+            max-width: 190px;
+            line-height: 18px;
+        }
+
+        .small-banner button {
+            margin-top: 17px;
+            padding: 9px 17px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .small-banner img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 150px;
+            height: 140px;
+            object-fit: contain;
+        }
+
+        .blue {
+            background: #bcecf2;
+        }
+
+        .yellow {
+            background: #f4d064;
+        }
+
+        .light-blue {
+            background: #c9e0f2;
+        }
+
+        /* ================= CATEGORY ================= */
+
+        .section-title {
+            margin: 35px 0 18px;
+            font-size: 24px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .category {
+            min-width: 100px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .category img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .category p {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #eee;
+        }
+
+        .product img {
+            width: 100%;
+            height: 145px;
+            object-fit: contain;
+        }
+
+        .time {
+            display: inline-block;
+            background: #f5f5f5;
+            font-size: 10px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .product h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .product .weight {
+            color: #777;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .add-btn {
+            border: 1px solid #0c831f;
+            background: white;
+            color: #0c831f;
+            padding: 6px 13px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: #0c831f;
+            color: white;
+        }
+
+        /* ================= CART ================= */
+
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 300;
+            box-shadow: -5px 0 20px #0002;
+            transition: 0.3s;
+            padding: 25px;
+        }
+
+        .cart-panel.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 18px;
+        }
+
+        .close {
+            border: none;
+            background: none;
+            font-size: 25px;
+        }
+
+        .cart-items {
+            height: calc(100vh - 190px);
+            overflow-y: auto;
+            padding-top: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .cart-info {
+            flex: 1;
+        }
+
+        .cart-info h4 {
+            font-size: 13px;
+        }
+
+        .cart-info p {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 7px;
+        }
+
+        .qty button {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #0c831f;
+            background: white;
+            color: #0c831f;
+        }
+
+        .cart-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .checkout {
+            width: 100%;
+            padding: 14px;
+            background: #0c831f;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        /* ================= LOGIN ================= */
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0008;
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .login-box {
+            background: white;
+            width: 360px;
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .continue {
+            width: 100%;
+            padding: 13px;
+            background: #0c831f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .close-login {
+            position: absolute;
+            right: 18px;
+            top: 15px;
+            border: none;
+            background: none;
+            font-size: 24px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 50px;
+            background: white;
+            padding: 40px;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        footer h2 {
+            margin-bottom: 15px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #666;
+            margin: 9px 0;
+            font-size: 14px;
+        }
+
+        /* ================= MOBILE NAV ================= */
+
+        .mobile-nav {
+            display: none;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 1000px) {
+
+            .products {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .delivery {
+                display: none;
+            }
+
+            .small-banners {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media(max-width: 700px) {
+
+            header {
+                height: auto;
+                padding: 12px 15px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .login-btn {
+                margin-left: auto;
+            }
+
+            .search {
+                flex-basis: 100%;
+                order: 5;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .hero {
+                height: 290px;
+                padding: 25px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+                max-width: 280px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                max-width: 280px;
+            }
+
+            .hero img {
+                width: 260px;
+                height: 190px;
+                opacity: 0.45;
+            }
+
+            .small-banners {
+                display: flex;
+                overflow-x: auto;
+            }
+
+            .small-banner {
+                min-width: 280px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product img {
+                height: 130px;
+            }
+
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .mobile-nav {
+                position: fixed;
+                display: flex;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 65px;
+                background: white;
+                border-top: 1px solid #ddd;
+                z-index: 200;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .mobile-nav button {
+                border: none;
+                background: none;
+                font-size: 12px;
+            }
+
+            body {
+                padding-bottom: 65px;
+            }
+        }
+
+        @media(max-width: 450px) {
+
+            .products {
+                gap: 8px;
+            }
+
+            .product {
+                padding: 8px;
+            }
+
+            .product img {
+                height: 115px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            footer {
+                padding: 25px 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        blink<span>it</span>
+    </div>
+
+    <div class="delivery">
+        <b>Delivery in 8 minutes</b><br>
+        Jaipur, Rajasthan
+    </div>
+
+    <div class="search">
+        <input
+            type="text"
+            id="search"
+            placeholder="Search for products..."
+            onkeyup="searchProducts()"
+        >
+    </div>
+
+    <button class="login-btn" onclick="openLogin()">
+        Login
+    </button>
+
+    <button class="cart-btn" onclick="openCart()">
+        🛒 Cart <span id="cartCount">0</span>
+    </button>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <h1>
+            Stock up on daily essentials
+        </h1>
+
+        <p>
+            Get farm-fresh goodness & a range of exotic
+            fruits, vegetables, eggs & more
+        </p>
+
+        <button>
+            Shop Now
+        </button>
+
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800">
+
+    </div>
+
+
+    <!-- SMALL BANNERS -->
+
+    <div class="small-banners">
+
+        <div class="small-banner blue">
+
+            <h2>
+                Pharmacy at your doorstep
+            </h2>
+
+            <p>
+                Convenient healthcare products
+                delivered to your home.
+            </p>
+
+            <button>
+                Order Now
+            </button>
+
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400">
+
+        </div>
+
+
+        <div class="small-banner yellow">
+
+            <h2>
+                Pet care supplies at your door
+            </h2>
+
+            <p>
+                Food, toys and care products
+                for your pets.
+            </p>
+
+            <button>
+                Shop Now
+            </button>
+
+            <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400">
+
+        </div>
+
+
+        <div class="small-banner light-blue">
+
+            <h2>
+                No time for a diaper run?
+            </h2>
+
+            <p>
+                Get baby care essentials
+                delivered quickly.
+            </p>
+
+            <button>
+                Order Now
+            </button>
+
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400">
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORIES -->
+
+    <h2 class="section-title">
+        Shop by Category
+    </h2>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('all')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081840.png">
+            <p>All</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('fruits')">
+            <img src="https://cdn-icons-png.flaticon.com/512/590/590685.png">
+            <p>Fruits</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('vegetables')">
+            <img src="https://cdn-icons-png.flaticon.com/512/2153/2153788.png">
+            <p>Vegetables</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('dairy')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3050/3050158.png">
+            <p>Dairy</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('snacks')">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
+            <p>Snacks</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('drinks')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3082/3082031.png">
+            <p>Drinks</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('bakery')">
+            <img src="https://cdn-icons-png.flaticon.com/512/2553/2553691.png">
+            <p>Bakery</p>
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <h2 class="section-title">
+        Dairy, Bread & Eggs
+    </h2>
+
+    <div class="products" id="products">
+
+        <div class="product" data-name="milk" data-category="dairy">
+
+            <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Amul Taaza Milk</h3>
+
+            <p class="weight">1 L</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹66</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(1)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="bread" data-category="bakery">
+
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Brown Bread</h3>
+
+            <p class="weight">400 g</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹45</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(2)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="eggs" data-category="dairy">
+
+            <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Farm Fresh Eggs</h3>
+
+            <p class="weight">6 pieces</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹55</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(3)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="paneer" data-category="dairy">
+
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Fresh Paneer</h3>
+
+            <p class="weight">200 g</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹90</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(4)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="butter" data-category="dairy">
+
+            <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Amul Butter</h3>
+
+            <p class="weight">100 g</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹58</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(5)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="curd" data-category="dairy">
+
+            <img src="https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Fresh Curd</h3>
+
+            <p class="weight">400 g</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹42</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(6)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FRUITS -->
+
+    <h2 class="section-title">
+        Fresh Fruits
+    </h2>
+
+    <div class="products">
+
+        <div class="product" data-name="apple" data-category="fruits">
+
+            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Fresh Apples</h3>
+
+            <p class="weight">1 kg</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹149</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(7)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="banana" data-category="fruits">
+
+            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Banana</h3>
+
+            <p class="weight">6 pieces</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹45</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(8)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="orange" data-category="fruits">
+
+            <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Fresh Orange</h3>
+
+            <p class="weight">1 kg</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹99</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(9)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="grapes" data-category="fruits">
+
+            <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Green Grapes</h3>
+
+            <p class="weight">500 g</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹75</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(10)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- VEGETABLES -->
+
+    <h2 class="section-title">
+        Fresh Vegetables
+    </h2>
+
+    <div class="products">
+
+        <div class="product" data-name="potato" data-category="vegetables">
+
+            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Potato</h3>
+
+            <p class="weight">1 kg</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹35</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(11)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="tomato" data-category="vegetables">
+
+            <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Fresh Tomato</h3>
+
+            <p class="weight">1 kg</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹40</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(12)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="onion" data-category="vegetables">
+
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Red Onion</h3>
+
+            <p class="weight">1 kg</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹38</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(13)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product" data-name="carrot" data-category="vegetables">
+
+            <img src="https://images.unsplash.com/photo-1447175008436-170170753d52?w=400">
+
+            <span class="time">8 MINS</span>
+
+            <h3>Carrot</h3>
+
+            <p class="weight">500 g</p>
+
+            <div class="product-bottom">
+
+                <span class="price">₹45</span>
+
+                <button class="add-btn"
+                    onclick="addToCart(14)">
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CART ================= -->
+
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+        <h2>Your Cart</h2>
+
+        <button class="close" onclick="closeCart()">
+            ×
+        </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems">
+
+        <p>Your cart is empty.</p>
+
+    </div>
+
+    <div class="cart-footer">
+
+        <div class="total">
+
+            <span>Total</span>
+
+            <span id="total">
+                ₹0
+            </span>
+
+        </div>
+
+        <button class="checkout" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LOGIN ================= -->
+
+<div class="overlay" id="loginOverlay">
+
+    <div class="login-box">
+
+        <button class="close-login"
+                onclick="closeLogin()">
+            ×
+        </button>
+
+        <h2>Login</h2>
+
+        <p style="margin-bottom:20px;color:#666;">
+            Enter your mobile number
+        </p>
+
+        <input
+            type="tel"
+            placeholder="Mobile Number"
+        >
+
+        <button class="continue"
+                onclick="login()">
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <h2>blink<span style="color:#0c831f">it</span></h2>
+
+            <p>
+                Blinkit-style grocery delivery
+                website clone.
+            </p>
+        </div>
+
+        <div>
+            <h3>Useful Links</h3>
+
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Blog</p>
+            <p>Contact</p>
+        </div>
+
+        <div>
+            <h3>Categories</h3>
+
+            <p>Fruits</p>
+            <p>Vegetables</p>
+            <p>Dairy</p>
+            <p>Snacks</p>
+        </div>
+
+        <div>
+            <h3>Help</h3>
+
+            <p>FAQs</p>
+            <p>Privacy Policy</p>
+            <p>Terms</p>
+            <p>Support</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav">
+
+    <button onclick="window.scrollTo(0,0)">
+        🏠<br>Home
+    </button>
+
+    <button onclick="document.getElementById('search').focus()">
+        🔍<br>Search
+    </button>
+
+    <button onclick="openCart()">
+        🛒<br>Cart
+    </button>
+
+    <button onclick="openLogin()">
+        👤<br>Account
+    </button>
+
+</div>
+
+
+<script>
+
+    /* ================= PRODUCTS ================= */
+
+    const products = {
+
+        1: {
+            name: "Amul Taaza Milk",
+            price: 66,
+            image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400"
+        },
+
+        2: {
+            name: "Brown Bread",
+            price: 45,
+            image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
+        },
+
+        3: {
+            name: "Farm Fresh Eggs",
+            price: 55,
+            image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400"
+        },
+
+        4: {
+            name: "Fresh Paneer",
+            price: 90,
+            image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400"
+        },
+
+        5: {
+            name: "Amul Butter",
+            price: 58,
+            image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400"
+        },
+
+        6: {
+            name: "Fresh Curd",
+            price: 42,
+            image: "https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=400"
+        },
+
+        7: {
+            name: "Fresh Apples",
+            price: 149,
+            image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400"
+        },
+
+        8: {
+            name: "Banana",
+            price: 45,
+            image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400"
+        },
+
+        9: {
+            name: "Fresh Orange",
+            price: 99,
+            image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=400"
+        },
+
+        10: {
+            name: "Green Grapes",
+            price: 75,
+            image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=400"
+        },
+
+        11: {
+            name: "Potato",
+            price: 35,
+            image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400"
+        },
+
+        12: {
+            name: "Fresh Tomato",
+            price: 40,
+            image: "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400"
+        },
+
+        13: {
+            name: "Red Onion",
+            price: 38,
+            image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400"
+        },
+
+        14: {
+            name: "Carrot",
+            price: 45,
+            image: "https://images.unsplash.com/photo-1447175008436-170170753d52?w=400"
+        }
+
+    };
+
+
+    let cart = {};
+
+
+    /* ================= ADD TO CART ================= */
+
+    function addToCart(id) {
+
+        if (cart[id]) {
+
+            cart[id]++;
+
+        } else {
+
+            cart[id] = 1;
+
+        }
+
+        updateCart();
+
+        alert(products[id].name + " added to cart!");
+
+    }
+
+
+    /* ================= UPDATE CART ================= */
+
+    function updateCart() {
+
+        let cartItems =
+            document.getElementById("cartItems");
+
+        let count = 0;
+        let total = 0;
+
+        cartItems.innerHTML = "";
+
+        for (let id in cart) {
+
+            let product = products[id];
+            let quantity = cart[id];
+
+            count += quantity;
+
+            total += product.price * quantity;
+
+            cartItems.innerHTML += `
+
+                <div class="cart-item">
+
+                    <img src="${product.image}">
+
+                    <div class="cart-info">
+
+                        <h4>
+                            ${product.name}
+                        </h4>
+
+                        <p>
+                            ₹${product.price}
+                        </p>
+
+                        <div class="qty">
+
+                            <button
+                                onclick="decrease(${id})">
+                                -
+                            </button>
+
+                            <span>
+                                ${quantity}
+                            </span>
+
+                            <button
+                                onclick="increase(${id})">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        }
+
+        if (count === 0) {
+
+            cartItems.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+        }
+
+        document.getElementById("cartCount")
+            .innerText = count;
+
+        document.getElementById("total")
+            .innerText = "₹" + total;
+
+    }
+
+
+    /* ================= QUANTITY ================= */
+
+    function increase(id) {
+
+        cart[id]++;
+
+        updateCart();
+
+    }
+
+
+    function decrease(id) {
+
+        cart[id]--;
+
+        if (cart[id] <= 0) {
+
+            delete cart[id];
+
+        }
+
+        updateCart();
+
+    }
+
+
+    /* ================= OPEN CART ================= */
+
+    function openCart() {
+
+        document
+            .getElementById("cartPanel")
+            .classList.add("active");
+
+    }
+
+
+    function closeCart() {
+
+        document
+            .getElementById("cartPanel")
+            .classList.remove("active");
+
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    function searchProducts() {
+
+        let value =
+            document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+        let allProducts =
+            document.querySelectorAll(".product");
+
+        allProducts.forEach(function(product) {
+
+            let name =
+                product
+                .getAttribute("data-name");
+
+            if (name.includes(value)) {
+
+                product.style.display = "block";
+
+            } else {
+
+                product.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* ================= CATEGORY ================= */
+
+    function filterCategory(category) {
+
+        let allProducts =
+            document.querySelectorAll(".product");
+
+        allProducts.forEach(function(product) {
+
+            let productCategory =
+                product.getAttribute("data-category");
+
+            if (
+                category === "all" ||
+                productCategory === category
+            ) {
+
+                product.style.display = "block";
+
+            } else {
+
+                product.style.display = "none";
+
+            }
+
+        });
+
+        document
+            .getElementById("products")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /* ================= LOGIN ================= */
+
+    function openLogin() {
+
+        document
+            .getElementById("loginOverlay")
+            .classList.add("active");
+
+    }
+
+
+    function closeLogin() {
+
+        document
+            .getElementById("loginOverlay")
+            .classList.remove("active");
+
+    }
+
+
+    function login() {
+
+        alert("Login feature demo");
+
+        closeLogin();
+
+    }
+
+
+    /* ================= CHECKOUT ================= */
+
+    function checkout() {
+
+        if (Object.keys(cart).length === 0) {
+
+            alert("Your cart is empty!");
+
+            return;
+
+        }
+
+        alert(
+            "Order placed successfully! " +
+            "This is a frontend demo."
+        );
+
+        cart = {};
+
+        updateCart();
+
+        closeCart();
+
+    }
+
+
+    /* ================= INITIAL ================= */
+
+    updateCart();
+
+</script>
+
+</body>
+</html>

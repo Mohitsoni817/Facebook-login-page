@@ -1,0 +1,213 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.board {
+    width: 600px;
+    height: 600px;
+    border: 3px solid black;
+    position: relative;
+}
+
+
+/* HOME */
+
+.home {
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green-home {
+    background: #00b51a;
+    top: 0;
+    left: 0;
+}
+
+.yellow-home {
+    background: #ffd900;
+    top: 0;
+    right: 0;
+}
+
+.red-home {
+    background: red;
+    bottom: 0;
+    left: 0;
+}
+
+.blue-home {
+    background: #1684e8;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* HOME WHITE BOX */
+
+.home-box {
+    width: 70%;
+    height: 70%;
+    background: white;
+    border-radius: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+    gap: 35px;
+}
+
+.home-box i {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+
+/* COIN COLORS */
+
+.green-home i {
+    background: #00b51a;
+}
+
+.yellow-home i {
+    background: #ffd900;
+}
+
+.red-home i {
+    background: red;
+}
+
+.blue-home i {
+    background: #1684e8;
+}
+
+
+/* PATH */
+
+.top-path,
+.bottom-path {
+    width: 20%;
+    height: 40%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+
+.top-path {
+    top: 0;
+    left: 40%;
+}
+
+.bottom-path {
+    bottom: 0;
+    left: 40%;
+}
+
+.left-path,
+.right-path {
+    width: 40%;
+    height: 20%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.left-path {
+    top: 40%;
+    left: 0;
+}
+
+.right-path {
+    top: 40%;
+    right: 0;
+}
+
+.top-path div,
+.bottom-path div,
+.left-path div,
+.right-path div {
+    border: 1px solid black;
+    background: white;
+}
+
+
+/* COLORED PATH */
+
+.yellow {
+    background: #ffd900 !important;
+}
+
+.red {
+    background: red !important;
+}
+
+.green {
+    background: #00b51a !important;
+}
+
+.blue {
+    background: #1684e8 !important;
+}
+
+
+/* CENTER */
+
+.center {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 40%;
+    left: 40%;
+    border: 1px solid black;
+    background: white;
+}
+
+
+/* CENTER TRIANGLES */
+
+.triangle {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
+
+.green-triangle {
+    left: 0;
+    top: 0;
+    background: #00b51a;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.yellow-triangle {
+    right: 0;
+    top: 0;
+    background: #ffd900;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.red-triangle {
+    left: 0;
+    bottom: 0;
+    background: red;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.blue-triangle {
+    right: 0;
+    bottom: 0;
+    background: #1684e8;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}

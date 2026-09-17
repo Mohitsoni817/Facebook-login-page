@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify Clone - Deep Focus</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* LEFT SIDEBAR */
+
+        .sidebar {
+            width: 230px;
+            background: #000;
+            padding: 25px 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        .logo span {
+            color: #1db954;
+        }
+
+        .menu {
+            margin-bottom: 30px;
+        }
+
+        .menu p {
+            color: #b3b3b3;
+            padding: 12px 5px;
+            cursor: pointer;
+        }
+
+        .menu p:hover {
+            color: white;
+        }
+
+        .playlist-title {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .playlist {
+            color: #aaa;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        /* MAIN */
+
+        .main {
+            flex: 1;
+            background: linear-gradient(#292929, #121212 400px);
+            overflow-y: auto;
+            padding-bottom: 100px;
+        }
+
+        /* TOP */
+
+        .top {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 35px;
+        }
+
+        .arrows button {
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .profile {
+            background: #111;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        /* HERO */
+
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 35px;
+            gap: 30px;
+        }
+
+        .cover {
+            width: 230px;
+            height: 230px;
+            background: linear-gradient(135deg, #111, #555);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 30px #000;
+        }
+
+        .cover h1 {
+            font-size: 38px;
+            text-align: center;
+        }
+
+        .cover span {
+            color: #1db954;
+        }
+
+        .hero-info p {
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .hero-info h1 {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
+        .small {
+            color: #bbb;
+            font-size: 13px;
+        }
+
+        /* BUTTONS */
+
+        .actions {
+            padding: 0 35px 20px;
+        }
+
+        .play {
+            background: #1db954;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .heart {
+            background: none;
+            color: white;
+            border: none;
+            font-size: 28px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* SONG LIST */
+
+        .songs {
+            padding: 0 35px;
+        }
+
+        .song-header {
+            display: grid;
+            grid-template-columns: 40px 1fr 200px;
+            padding: 10px;
+            color: #888;
+            border-bottom: 1px solid #333;
+            margin-bottom: 10px;
+        }
+
+        .song {
+            display: grid;
+            grid-template-columns: 40px 1fr 200px;
+            align-items: center;
+            padding: 12px 10px;
+            border-radius: 5px;
+        }
+
+        .song:hover {
+            background: #2a2a2a;
+        }
+
+        .number {
+            color: #999;
+        }
+
+        .song-name {
+            font-weight: bold;
+        }
+
+        .artist {
+            color: #999;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .album {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* BOTTOM PLAYER */
+
+        .player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            background: #181818;
+            border-top: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 25px;
+        }
+
+        .now-playing {
+            width: 250px;
+        }
+
+        .now-playing h4 {
+            margin-bottom: 5px;
+        }
+
+        .now-playing p {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .controls {
+            text-align: center;
+        }
+
+        .controls button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .controls .big {
+            background: white;
+            color: black;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+        }
+
+        .volume {
+            width: 180px;
+        }
+
+        .bar {
+            width: 100%;
+            height: 4px;
+            background: #555;
+            margin-top: 8px;
+            border-radius: 5px;
+        }
+
+        .green-bar {
+            width: 35%;
+            height: 4px;
+            background: #1db954;
+            border-radius: 5px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+            .logo {
+                font-size: 18px;
+                text-align: center;
+            }
+
+            .menu p {
+                font-size: 0;
+                text-align: center;
+            }
+
+            .menu p:first-child:before {
+                content: "⌂";
+                font-size: 22px;
+            }
+
+            .menu p:nth-child(2):before {
+                content: "⌕";
+                font-size: 22px;
+            }
+
+            .menu p:nth-child(3):before {
+                content: "♫";
+                font-size: 22px;
+            }
+
+            .playlist-title,
+            .playlist {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cover {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero-info h1 {
+                font-size: 40px;
+            }
+
+            .song-header,
+            .song {
+                grid-template-columns: 30px 1fr;
+            }
+
+            .album {
+                display: none;
+            }
+
+            .player {
+                height: 75px;
+                padding: 10px;
+            }
+
+            .now-playing {
+                width: 150px;
+            }
+
+            .volume {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            <span>●</span> Spotify
+        </div>
+
+        <div class="menu">
+            <p>🏠 Home</p>
+            <p>🔍 Search</p>
+            <p>📚 Your Library</p>
+        </div>
+
+        <div class="playlist-title">
+            YOUR PLAYLISTS
+        </div>
+
+        <div class="playlist">
+            + Create Playlist
+        </div>
+
+        <div class="playlist">
+            Liked Songs
+        </div>
+
+        <div class="playlist">
+            Deep Focus
+        </div>
+
+        <div class="playlist">
+            Chill Vibes
+        </div>
+
+        <div class="playlist">
+            Workout Music
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <!-- TOP -->
+
+        <div class="top">
+
+            <div class="arrows">
+                <button>‹</button>
+                <button>›</button>
+            </div>
+
+            <div class="profile">
+                👤 Mohit
+            </div>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="cover">
+                <h1>
+                    Deep<br>
+                    <span>Focus</span>
+                </h1>
+            </div>
+
+            <div class="hero-info">
+
+                <p>PLAYLIST</p>
+
+                <h1>Deep Focus</h1>
+
+                <p class="description">
+                    Keep calm and focus with these relaxing
+                    instrumental tracks.
+                </p>
+
+                <p class="small">
+                    Spotify • 50 songs
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <button class="play" onclick="playMusic()">
+                ▶
+            </button>
+
+            <button class="heart">
+                ♡
+            </button>
+
+        </div>
+
+
+        <!-- SONGS -->
+
+        <div class="songs">
+
+            <div class="song-header">
+                <span>#</span>
+                <span>Title</span>
+                <span>Album</span>
+            </div>
+
+
+            <div class="song" onclick="selectSong('Weightless')">
+
+                <span class="number">1</span>
+
+                <div>
+                    <div class="song-name">
+                        Weightless
+                    </div>
+
+                    <div class="artist">
+                        Marconi Union
+                    </div>
+                </div>
+
+                <div class="album">
+                    Deep Focus
+                </div>
+
+            </div>
+
+
+            <div class="song" onclick="selectSong('Experience')">
+
+                <span class="number">2</span>
+
+                <div>
+                    <div class="song-name">
+                        Experience
+                    </div>
+
+                    <div class="artist">
+                        Ludovico Einaudi
+                    </div>
+                </div>
+
+                <div class="album">
+                    Piano Collection
+                </div>
+
+            </div>
+
+
+            <div class="song" onclick="selectSong('Night Walk')">
+
+                <span class="number">3</span>
+
+                <div>
+                    <div class="song-name">
+                        Night Walk
+                    </div>
+
+                    <div class="artist">
+                        Focus Music
+                    </div>
+                </div>
+
+                <div class="album">
+                    Deep Focus
+                </div>
+
+            </div>
+
+
+            <div class="song" onclick="selectSong('Ocean Waves')">
+
+                <span class="number">4</span>
+
+                <div>
+                    <div class="song-name">
+                        Ocean Waves
+                    </div>
+
+                    <div class="artist">
+                        Relaxing Sounds
+                    </div>
+                </div>
+
+                <div class="album">
+                    Nature
+                </div>
+
+            </div>
+
+
+            <div class="song" onclick="selectSong('Calm Mind')">
+
+                <span class="number">5</span>
+
+                <div>
+                    <div class="song-name">
+                        Calm Mind
+                    </div>
+
+                    <div class="artist">
+                        Focus Flow
+                    </div>
+                </div>
+
+                <div class="album">
+                    Study Music
+                </div>
+
+            </div>
+
+
+            <div class="song" onclick="selectSong('Peaceful Piano')">
+
+                <span class="number">6</span>
+
+                <div>
+                    <div class="song-name">
+                        Peaceful Piano
+                    </div>
+
+                    <div class="artist">
+                        Relaxing Piano
+                    </div>
+                </div>
+
+                <div class="album">
+                    Piano
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MUSIC PLAYER -->
+
+<div class="player">
+
+    <div class="now-playing">
+
+        <h4 id="currentSong">
+            Deep Focus
+        </h4>
+
+        <p id="currentArtist">
+            Spotify Playlist
+        </p>
+
+    </div>
+
+
+    <div class="controls">
+
+        <button>🔀</button>
+
+        <button onclick="previousSong()">⏮</button>
+
+        <button class="big" onclick="playMusic()" id="playButton">
+            ▶
+        </button>
+
+        <button onclick="nextSong()">⏭</button>
+
+        <button>🔁</button>
+
+        <div class="bar">
+            <div class="green-bar"></div>
+        </div>
+
+    </div>
+
+
+    <div class="volume">
+
+        🔊
+
+        <div class="bar">
+            <div class="green-bar"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let playing = false;
+
+    function playMusic() {
+
+        let button = document.getElementById("playButton");
+
+        if (playing) {
+
+            button.innerHTML = "▶";
+            playing = false;
+
+        } else {
+
+            button.innerHTML = "Ⅱ";
+            playing = true;
+
+        }
+
+    }
+
+
+    function selectSong(song) {
+
+        document.getElementById("currentSong").innerHTML = song;
+
+        document.getElementById("currentArtist").innerHTML =
+            "Deep Focus Playlist";
+
+    }
+
+
+    function nextSong() {
+
+        document.getElementById("currentSong").innerHTML =
+            "Next Song";
+
+    }
+
+
+    function previousSong() {
+
+        document.getElementById("currentSong").innerHTML =
+            "Previous Song";
+
+    }
+
+</script>
+
+</body>
+</html>
