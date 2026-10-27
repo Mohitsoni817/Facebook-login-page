@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facebook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;0
+    background: #f0f2f5;
+}
+
+header {
+    background: #3b5998;
+    color: white;
+    height: 80px;
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
+.login input {
+    width: 130px;
+}
+
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+    display: flex;
+    gap: 100px;
+}
+
+.left {
+    width: 50%;
+}
+
+.left h2 {
+    margin-top: 50px;
+}
+
+.right {
+    width: 40%;
+}
+
+.right input {
+    padding: 8px;
+    margin: 5px;
+}
+
+.full {
+    width: 90%;
+}
+
+button {
+    padding: 7px;
+}
+
+.signup {
+    background: #5b9e3b;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+}
+
+.small {
+    font-size: 12px;
+}
+</style>
+<body>
+
+<header>  
+    <h1>facebook</h1>
+
+    <div class="login">
+        Email or Phone
+        <input type="text">
+
+        Password
+        <input type="password">
+
+        <button>Log In</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="left">
+        <h2>Connect with friends and the world around you on Facebook.</h2>
+
+        <p><b>See photos and updates</b> from friends in News Feed</p>
+        <p><b>Share what's new</b> in your life on your timeline</p>
+        <p><b>Find more</b> of what you're looking for with search</p>
+    </div>
+
+    <div class="right">
+        <h1>Sign Up</h1>
+        <p>It's free and always will be.</p>
+
+        <input type="text" placeholder="First name">
+        <input type="text" placeholder="Last name">
+
+        <br>
+
+        <input class="full" type="text" placeholder="Email or mobile number">
+        <br>
+        <input class="full" type="text" placeholder="Re-enter email or mobile number">
+        <br>
+        <input class="full" type="password" placeholder="New password">
+
+        <h3>Birthday</h3>
+
+        <select>
+            <option>Day</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+
+        <select>
+            <option>Month</option>
+            <option>Jan</option>
+            <option>Feb</option>
+            <option>Mar</option>
+        </select>
+
+        <select>
+            <option>Year</option>
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+        </select>
+
+        <br><br>
+
+        <input type="radio" name="gender"> Female
+        <input type="radio" name="gender"> Male
+
+        <p class="small">
+            By clicking Sign Up, you agree to our terms and conditions.
+        </p>
+
+        <button class="signup">Sign Up</button>
+    </div>
+
+</div>
+
+</body>
+</html>
